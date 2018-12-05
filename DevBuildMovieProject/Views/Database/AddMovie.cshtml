@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "AddMovie";
+}
+
+<h2>Add New Movie</h2>
+
+<form action="~/Database/SaveNewMovie" method="post">
+    <input type="hidden" name="MovieID" />
+    <input type="text" name="MovieTitle" required placeholder="Movie Title"/>
+    <input type="text" name="Genre" required placeholder="Genre" />
+    <input type="text" name="Year" required placeholder="Year"/>
+    <br /> Optional:
+    <input type="text" name="FirstName" placeholder="Director First Name"/>
+    <input type="text" name="LastName" placeholder="Director Last Name" />
+
+    <input type="submit" class="btn-info" />
+
+</form>
+
