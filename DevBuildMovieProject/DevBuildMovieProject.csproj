@@ -226,6 +226,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Database\Index.cshtml" />
     <Content Include="Views\Database\AddMovie.cshtml" />
+    <Content Include="Views\Database\EditMovie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

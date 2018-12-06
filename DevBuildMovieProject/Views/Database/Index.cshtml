@@ -16,6 +16,7 @@
         <th>
             Year
         </th>
+        <th>Watched</th>
         <th>
             Director
         </th>
@@ -26,6 +27,7 @@
             <td>@movie.MovieTitle</td>
             <td>@movie.Genre</td>
             <td>@movie.Year</td>
+            <td>@movie.Watched</td>
             @if (movie.Director != null)
             {
             <td>@movie.Director.FirstName @movie.Director.LastName</td>
@@ -34,6 +36,8 @@
             {
                 <td><a href="~/Database/AddDirector">Add a Director to this Movie</a></td>
             }
+            <td><a href="~/Database/EditMovie?MovieID=@movie.MovieID" class="btn-primary"> Edit this movie</a></td>
+            <td><a href="~/Database/DeleteMovie?MovieID=@movie.MovieID">Delete this movie</a></td>
         </tr>
     }
 </table>

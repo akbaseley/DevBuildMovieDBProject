@@ -1,6 +1,7 @@
 ﻿using DevBuildMovieProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,36 +24,96 @@ namespace DevBuildMovieProject.Controllers
             return View();
         }
 
-        public ActionResult SaveNewMovie(Movie newMovie, Director newDirector)
+        public ActionResult SaveNewMovie(Movie newMovie)
         {
             DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();
-            List<Director> directors = ORM.Directors.Where(c => c.LastName.Equals(newDirector.LastName)
-                                              && c.FirstName.Equals(newDirector.FirstName)).ToList();
 
-            if (newDirector.LastName != null && directors.Count == 0)
+
+            if (newMovie.MovieTitle != null)
             {
-                    ORM.Directors.Add(newDirector);
-                    ORM.SaveChanges();
-
-            }
-            else
-            {
-                newDirector = ORM.Directors.First(c => c.LastName.Equals(newDirector.LastName)
-                                  && c.FirstName.Equals(newDirector.FirstName));
-            }
-
-
-            if (newMovie != null)
-            {
-                newMovie.Director = newDirector;
                 ORM.Movies.Add(newMovie);
                 ORM.SaveChanges();
             }
 
+            return RedirectToAction("Index");
+        }
 
+        public ActionResult EditMovie(int MovieID)
+        {
+            DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();
+            Movie found = ORM.Movies.Find(MovieID);
+            return View(found);
+        }
 
+        public ActionResult SaveMovieChanges(Movie updatedMovie)
+        {
+            DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();
+            Movie oldMovie = ORM.Movies.Find(updatedMovie.MovieID);
+
+            oldMovie.MovieTitle = updatedMovie.MovieTitle;
+            oldMovie.Genre = updatedMovie.Genre;
+            oldMovie.Year = updatedMovie.Year;
+            oldMovie.Watched = updatedMovie.Watched;
+
+            ORM.Entry(oldMovie).State = System.Data.Entity.EntityState.Modified;
+            ORM.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteMovie(int MovieID)
+        {
+            DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();
+            Movie found = ORM.Movies.Find(MovieID);
+
+            ORM.Movies.Remove(found);
+            ORM.SaveChanges();
 
             return RedirectToAction("Index");
         }
+
+        //#region CRUD - Update Function
+        //public ActionResult EditMovie(int MovieID)
+        //{
+        //    DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();
+        //    Movie found = ORM.Movies.Find(MovieID);
+        //    return View(found);
+        //}
+        //public ActionResult SaveMovieUpdates(Movie updatedMovie)
+        //{
+        //    DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();
+        //    Movie originalMovie = ORM.Movies.Find(updatedMovie.MovieID);
+
+        //    if(originalMovie != null && ModelState.IsValid)
+        //    {
+        //        originalMovie.MovieTitle = updatedMovie.MovieTitle;
+        //        originalMovie.Genre = updatedMovie.Genre;
+        //        originalMovie.Year = updatedMovie.Year;
+        //        //originalMovie.Watched = updatedMovie.Watched;
+
+        //        ORM.Entry(originalMovie).State = System.Data.Entity.EntityState.Modified;
+        //        ORM.SaveChanges();
+
+        //        return RedirectToAction("Index");
+        //    }
+        //    else
+        //    {
+        //        ViewBag.ErrorMessage = "Oops! Something went wrong!";
+        //        return View("Error");
+        //    }
+        //}
+        //#endregion
+
+        //#region CRUD - Delete Funciton
+        //public ActionResult DeleteMovie(int MovieID)
+        //{
+        //    DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();
+
+        //    Movie found = ORM.Movies.Find(MovieID);
+
+        //    ORM.Movies.Remove(found);
+        //    ORM.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+        //#endregion
     }
 }

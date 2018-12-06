@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "EditMovie";
+}
+
+@model DevBuildMovieProject.Models.Movie
+
+<form action="~/Database/SaveMovieChanges" method="post">
+    <input type="hidden" name="MovieID" value="@Model.MovieID" />
+    <input type="text" name="MovieTitle" value="@Model.MovieTitle" />
+    <input type="text" name="Genre" value="@Model.Genre" />
+    <input type="text" name="Year" value="@Model.Year" placeholder="@Model.Year" />
+    @if (Model.Watched == "Yes")
+    {
+        <input type="radio" name="Watched" id="Yes" value="Yes" checked required />
+        <label for="Yes">Watched</label>
+        <input type="radio" name="Watched" id="No" value="No" />
+        <label for="No">Not Watched</label>
+    }
+    else
+    {
+        <input type="radio" name="Watched" id="Yes" value="Yes" required />
+        <label for="Yes">Watched</label>
+        <input type="radio" name="Watched" id="No" value="No" checked/>
+        <label for="No">Not Watched</label>
+    }
+
+    <input type="submit" class="btn-default" />
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model DevBuildMovieProject.Models.Movie 
+<h2>Edit Movie</h2>
+
+<form action="~/Database/SaveMovieUpdates" method="post">
+    <input type="text" name="MovieTitle" value="@Model.MovieTitle" placeholder="@Model.MovieTitle"/>
+    <input type="text" name="Year" value="@Model.Year" placeholder="@Model.Year"/>
+    <input type="text" name="Genre" value="@Model.Genre" placeholder="@Model.Genre" />
+    <input type="submit" value="Save Changes" class="btn btn-success"/>
+</form>*@

@@ -53,6 +53,7 @@
           <Property Name="Genre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Year" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="DirectorID" Type="int" />
+          <Property Name="Watched" Type="nvarchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <Association Name="FK_Actor_CharacterActor">
           <End Role="CharacterActor" Type="Self.CharacterActor" Multiplicity="0..1" />
@@ -224,6 +225,7 @@
           <Property Name="Genre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Year" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="DirectorID" Type="Int32" />
+          <Property Name="Watched" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Characters" Relationship="Self.FK_Character_Movie" FromRole="Movie" ToRole="Character" />
           <NavigationProperty Name="Director" Relationship="Self.FK_Movie_Director" FromRole="Movie" ToRole="Director" />
         </EntityType>
@@ -390,6 +392,7 @@
                 <ScalarProperty Name="Genre" ColumnName="Genre" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
                 <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
+                <ScalarProperty Name="Watched" ColumnName="Watched" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

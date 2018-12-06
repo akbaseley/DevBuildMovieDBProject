@@ -25,6 +25,7 @@ namespace DevBuildMovieProject.Models
         public string Genre { get; set; }
         public string Year { get; set; }
         public Nullable<int> DirectorID { get; set; }
+        public string Watched { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Character> Characters { get; set; }
