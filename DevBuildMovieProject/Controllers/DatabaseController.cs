@@ -11,6 +11,7 @@ namespace DevBuildMovieProject.Controllers
     public class DatabaseController : Controller
     {
         // GET: Database
+        [Authorize]
         public ActionResult Index()
         {
             DevBuildMovieDBEntities ORM = new DevBuildMovieDBEntities();

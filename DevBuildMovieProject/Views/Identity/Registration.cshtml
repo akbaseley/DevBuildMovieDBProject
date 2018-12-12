@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+}
+
+<h2>New User Registration</h2>
+
+<form action="~/Identity/Registration" method="post">
+    UserName<input type="text" name="UserName" required/><br /><br />
+    Password<input type="password" name="Password" required/><br /><br />
+    Astrological Sign<input type="text" name="AstrologicalSign"/>
+    Birthday<input type="date" name="Birthday" required />
+    <input type="submit" class="btn-default" />
+</form>
